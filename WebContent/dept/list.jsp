@@ -10,7 +10,7 @@
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb justify-content-end">
 			<li class="breadcrumb-item"><a href="/">Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Notice</li>
+			<li class="breadcrumb-item active" aria-current="page">Department Information</li>
 		</ol>
 	</nav>
 	<div class="container">
@@ -44,8 +44,8 @@
 									%>
 									<tr>
 										<th scope="row"><%=num %></th>
-										<td><%=writer %></td>
-										<td><a href="view.jsp?num=<%=num%>"><%=title %></a> </td>
+										<td><a href="view.jsp?num=<%=num%>"><%=name %></td>
+										<td><%=local %></a> </td>
 									</tr>
 									<% 
 										}

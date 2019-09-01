@@ -10,6 +10,10 @@ public class DeptDto {
 		this.name = name;
 		this.local = local;
 	}
+	
+	public DeptDto(String name, String local) {
+		this(0, name, local);
+	}
 
 	public int getNum() {
 		return num;

@@ -1,5 +1,5 @@
-<%@ page import="kr.co.kic.dev1.dto.NoticeDto"%>
-<%@ page import="kr.co.kic.dev1.dao.NoticeDao"%>
+<%@ page import="kr.co.kic.dev1.dto.DeptDto"%>
+<%@ page import="kr.co.kic.dev1.dao.DeptDao"%>
 <%@ page pageEncoding="UTF-8"%>
 <%
 	String tempNum = request.getParameter("num");
@@ -9,15 +9,13 @@
 	} catch(NumberFormatException e) {
 		num = 0;
 	}
-	NoticeDao dao = NoticeDao.getInstance();
-	NoticeDto dto = dao.select(num);
+	DeptDao dao = DeptDao.getInstance();
+	DeptDto dto = dao.select(num);
 	
 	if (dto != null) {
 //		num = dto.getNum(); 위에 num이 선언되어 있어 중복하여 선언하지 않는다.
-		String writer = dto.getWriter();
-		String title = dto.getTitle();
-		String content = dto.getContent();
-		String regdate = dto.getRegdate();
+		String name = dto.getName();
+		String local = dto.getLocal();
 %>
 <%@ include file = "../inc/header.jsp" %>
 	<nav aria-label="breadcrumb">
@@ -31,63 +29,50 @@
 			<div class="col-sm-12">
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">공지사항</h5>
+						<h5 class="card-title">부서정보</h5>
 						<form class="form-horizontal" role="form" name="f" method="post" action="">
 							<div class="form-group row">
-								<label class="col-form-label col-sm-2" for="writer">작성자</label>
+								<label class="col-form-label col-sm-2" for="name">부서이름</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="writer" value="<%=writer %>" id="writer" placeholder="이름을 입력해 주세요">
+									<input type="text" class="form-control" name="name" value="<%=name %>" id="name" placeholder="부서이름을 입력해 주세요">
 								</div>
 							</div>
 							<div class="form-group row">
-								<label class="col-form-label col-sm-2" for="title">제목</label>
+								<label class="col-form-label col-sm-2" for="local">지역</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="title" value="<%=title %>" id="title" placeholder="제목을 입력해 주세요">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-form-label col-sm-2" for="content">내용</label>
-								<div class="col-sm-10">
-									<textarea class="form-control" name="content" id="content" rows="10" placeholder="내용을 입력해 주세요"><%=content %></textarea>
+									<input type="text" class="form-control" name="local" value="<%=local %>" id="local" placeholder="지역을 입력해 주세요">
 								</div>
 							</div>
 							<input type="hidden" name="num" value="<%=num%>"/>
 						</form>
 						<div class="text-right">
-							<a href="" id="modifyNotice" class="btn btn-outline-primary">수정</a>
-							<a href="" id="deleteNotice" class="btn btn-outline-danger">삭제</a>
+							<a href="" id="modifyDept" class="btn btn-outline-primary">수정</a>
+							<a href="" id="deleteDept" class="btn btn-outline-danger">삭제</a>
 							<a href="list.jsp" class="btn btn-outline-success">리스트</a>
 						</div>
 						<script>
 							$(function() {
-								$("#modifyNotice").on("click", function(event) {
+								$("#modifyDept").on("click", function(event) {
 									event.preventDefault();
 									// 유효성 검사
-									let writer = $("#writer").val();
-									if (writer == "") {
-										alert("작성자를 입력해주세요.");
-										$("writer").focus();
+									let name = $("#name").val();
+									if (name == "") {
+										alert("부서이름을 입력해주세요.");
+										$("name").focus();
 										return;
 									}
 									
-									let title = $("#title").val();
-									if (title == "") {
-										alert("제목을 입력해주세요.");
-										$("title").focus();
-										return;
-									}
-									
-									let content = $("#content").val();
-									if (content == "") {
-										alert("내용을 입력해주세요.");
-										$("content").focus();
+									let local = $("#local").val();
+									if (local == "") {
+										alert("지역을 입력해주세요.");
+										$("local").focus();
 										return;
 									}
 									
 									f.action = "modify.jsp";
 									f.submit();
 								});
-								$("#deleteNotice").on("click", function(event) {
+								$("#deleteDept").on("click", function(event) {
 									event.preventDefault();
 									// 유효성 검사 불필요
 									f.action = "delete.jsp";
