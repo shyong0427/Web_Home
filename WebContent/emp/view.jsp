@@ -37,6 +37,12 @@
 						<h5 class="card-position">사원정보</h5>
 						<form class="form-horizontal" role="form" name="f" method="post" action="">
 							<div class="form-group row">
+								<label class="col-form-label col-sm-2" for="num">사원번호</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="num" value="<%=num %>" id="num" placeholder="사원번호를 입력해 주세요">
+								</div>
+							</div>
+							<div class="form-group row">
 								<label class="col-form-label col-sm-2" for="name">사원이름</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" name="name" value="<%=name %>" id="name" placeholder="사원의 이름을 입력해 주세요">
@@ -90,6 +96,12 @@
 								$("#modifyEmp").on("click", function(event) {
 									event.preventDefault();
 									// 유효성 검사
+									let num = $("#num").val();
+									if (num == "") {
+										alert("사원번호를 입력해주세요.");
+										return;
+									}
+									
 									let name = $("#name").val();
 									if (name == "") {
 										alert("사원의 이름을 입력해주세요.");

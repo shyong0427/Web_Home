@@ -35,9 +35,10 @@ public class DeptDao {
 			StringBuffer sql = new StringBuffer();
 			
 			sql.append("INSERT INTO dept(deptno, dname, loc) ");
-			sql.append("VALUE (null, ?, ?) ");
+			sql.append("VALUE (?, ?, ?) ");
 			
 			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(index++, obj.getNum());
 			pstmt.setString(index++, obj.getName());
 			pstmt.setString(index++, obj.getLocal());
 			pstmt.executeUpdate();
