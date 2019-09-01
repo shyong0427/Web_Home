@@ -2,7 +2,7 @@
 <%@ page import="kr.co.kic.dev1.dao.EmpDao"%>
 <%@ page pageEncoding="UTF-8"%>
 <%
-	String tempNum = request.getParameter("num");
+	String tempNum = request.getParameter("empnum");
 	int num = 0;
 	try {
 		num = Integer.parseInt(tempNum);
@@ -55,6 +55,12 @@
 								</div>
 							</div>
 							<div class="form-group row">
+								<label class="col-form-label col-sm-2" for="hiredate">입사날짜</label>
+								<div class="col-sm-10">
+									<input class="form-control" name="hiredate" id="hiredate" placeholder="입사날짜를 입력해 주세요">
+								</div>
+							</div>
+							<div class="form-group row">
 								<label class="col-form-label col-sm-2" for="sal">월급</label>
 								<div class="col-sm-10">
 									<input class="form-control" name="sal" id="sal" placeholder="월급을 입력해 주세요">
@@ -102,6 +108,13 @@
 									if (manager == "") {
 										alert("담당사수를 입력해주세요.");
 										$("manager").focus();
+										return;
+									}
+									
+									let hiredate;
+									if (hiredate == "") {
+										alert("입사날짜를 입력하세요");
+										$("hiredate").focus();
 										return;
 									}
 									

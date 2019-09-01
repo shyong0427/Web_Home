@@ -44,8 +44,8 @@
 									%>
 									<tr>
 										<th scope="row"><%=num %></th>
-										<td><a href="view.jsp?num=<%=num%>"><%=name %></td>
-										<td><%=local %></a> </td>
+										<td><a href="view.jsp?deptnum=<%=num%>"><%=name %></a></td>
+										<td><%=local %> </td>
 									</tr>
 									<% 
 										}

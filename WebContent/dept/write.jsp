@@ -15,6 +15,12 @@
 
 						<form class="form-horizontal" role="form" name="f" method="post" action="save.jsp">
 							<div class="form-group row">
+								<label class="col-form-label col-sm-2" for="num">부서번호</label>
+								<div class="col-sm-10">
+								<input type="text" class="form-control" name="num" id="num" placeholder="부서번호를 입력해 주세요">
+								</div>
+							</div>
+							<div class="form-group row">
 								<label class="col-form-label col-sm-2" for="name">부서이름</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" name="name" id="name" placeholder="부서이름을 입력해 주세요">
@@ -36,6 +42,12 @@
 								$("#saveNotice").on("click", function(event) {
 									event.preventDefault();
 									// 유효성 검사
+									let num = $("#num").val()
+									if (num == "") {
+										alert("부서번호를 입력해주세요.");
+										return;
+									}
+									
 									let name = $("#name").val();
 									if (name == "") {
 										alert("부서이름을 입력해주세요.");

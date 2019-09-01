@@ -4,7 +4,7 @@
 <%
 	request.setCharacterEncoding("utf-8");	
 
-	int num = Integer.parseInt(request.getParameter("num"));
+	int num = Integer.parseInt(request.getParameter("deptnum"));
 
 	DeptDao dao = DeptDao.getInstance();
 	boolean isSuccess = dao.delete(num);

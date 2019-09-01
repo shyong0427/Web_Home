@@ -3,7 +3,7 @@
 <%@ page pageEncoding="utf-8" %>
 <%
 	request.setCharacterEncoding("utf-8");	
-	int num = Integer.parseInt(request.getParameter("num"));
+	int num = Integer.parseInt(request.getParameter("deptnum"));
 	String name = request.getParameter("name");
 	String local = request.getParameter("local");
 	
@@ -15,7 +15,7 @@
 %>
 	<script>
 		alert("성공");
-		location.href = "view.jsp?num=<%=num%>";
+		location.href = "view.jsp?deptnum=<%=num%>";
 	</script>
 <% } else {%>
 	<script>

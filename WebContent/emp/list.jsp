@@ -50,7 +50,7 @@
 									%>
 									<tr>
 										<th scope="row"><%=num %></th>
-										<td><a href="view.jsp?num=<%=num %>"><%=name %></a></td>
+										<td><a href="view.jsp?empnum=<%=num %>"><%=name %></a></td>
 										<td><%=position %></td>
 										<td><%=manager %></td>
 										<td><%=hiredate %></td>
