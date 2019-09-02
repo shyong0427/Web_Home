@@ -143,7 +143,7 @@ public class EmpDao {
 			con = ConnLocator.getConnection();
 			StringBuffer sql = new StringBuffer();
 			
-			sql.append("SELECT empno, ename, job, mgr, DATE_FORMAT(hiredate, '%Y/%m/%d') ");
+			sql.append("SELECT empno, ename, job, mgr, DATE_FORMAT(hiredate, '%Y/%m/%d'), sal, comm, deptno ");
 			sql.append("FROM emp ");
 			sql.append("WHERE empno = ? ");
 			
@@ -159,8 +159,11 @@ public class EmpDao {
 				String position = rs.getString(index++);
 				int manager = rs.getInt(index++);
 				String hiredate = rs.getString(index++);
+				int sal = rs.getInt(index++);
+				int comm = rs.getInt(index++);
+				int deptno = rs.getInt(index++);
 				
-				obj = new EmpDto(_num, name, position, manager, hiredate);				
+				obj = new EmpDto(_num, name, position, manager, hiredate, sal, comm, deptno);				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -188,7 +191,7 @@ public class EmpDao {
 			con = ConnLocator.getConnection();
 			StringBuffer sql = new StringBuffer();
 			
-			sql.append("SELECT empno, ename, job, mgr, DATE_FORMAT(hiredate, '%Y/%m/%d') ");
+			sql.append("SELECT empno, ename, job, mgr, DATE_FORMAT(hiredate, '%Y/%m/%d'), sal, comm, deptno  ");
 			sql.append("FROM emp ");
 			sql.append("ORDER BY empno ASC ");
 			sql.append("LIMIT ?, ? ");
@@ -204,9 +207,13 @@ public class EmpDao {
 				String name = rs.getString(index++);
 				String position = rs.getString(index++);
 				int manager = rs.getInt(index++);
-				String hiredate = rs.getString(index++);
+				String hiredate = rs.getString(index++);				
+				int sal = rs.getInt(index++);
+				int comm = rs.getInt(index++);
+				int deptno = rs.getInt(index++);
 				
-				list.add(new EmpDto(num, name, position, manager, hiredate));
+				
+				list.add(new EmpDto(num, name, position, manager, hiredate, sal, comm, deptno));
 			}
 			
 		} catch (SQLException e) {
@@ -222,5 +229,41 @@ public class EmpDao {
 		}
 		
 		return list;
+	}
+	
+	public int getRows() {
+		int count = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int index = 1;
+				
+		try {
+			con = ConnLocator.getConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT COUNT(*) FROM emp ");
+					
+			pstmt = con.prepareStatement(sql.toString());
+			
+			rs = pstmt.executeQuery();
+					
+			if (rs.next()) {
+				index = 1;
+				count = rs.getInt(index);
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (con != null) con.close();
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+				
+		return count;
 	}
 }

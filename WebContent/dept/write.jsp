@@ -1,5 +1,17 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ include file = "../inc/header.jsp" %>
+<%
+	String tempPage = request.getParameter("page");
+	int cPage = 0;
+	if (tempPage == null || tempPage.length() == 0) {
+		cPage = 1;	
+	}
+	try {
+		cPage = Integer.parseInt(tempPage);
+	} catch (NumberFormatException e) {
+		cPage = 1;
+	}
+%>
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb justify-content-end">
 			<li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -34,12 +46,12 @@
 							</div>
 						</form>
 						<div class="text-right">
-							<a href="http://www.naver.com" id="saveNotice" class="btn btn-outline-primary">등록</a>
-							<a href="list.jsp" class="btn btn-outline-success">리스트</a>
+							<a href="" id="saveDept" class="btn btn-outline-primary">등록</a>
+							<a href="list.jsp?page=<%=cPage %>" class="btn btn-outline-success">리스트</a>
 						</div>
 						<script>
 							$(function() {
-								$("#saveNotice").on("click", function(event) {
+								$("#saveDept").on("click", function(event) {
 									event.preventDefault();
 									// 유효성 검사
 									let num = $("#num").val()

@@ -30,6 +30,9 @@
 				<li class="nav-item">
 					<a class="nav-link" href="/notice/list.jsp"><i class="fa fa-envelope-o"></i> Notice</a>
 				</li>
+				<li class="nave-item">
+					<a class="nav-link" href="/member/list.jsp"> Member</a>
+				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/emp/list.jsp"><i class="fa fa-id-badge"></i> Employee Information</a>
 				</li>
